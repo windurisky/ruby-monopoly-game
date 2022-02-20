@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+	<head>
+    <meta charset="utf-8">
+    <title>Ruby Monopoly Game - Home</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <style>
+      html,
+      body {
+          height: 100%;
+      }
+      html {
+          display: table;
+          margin: auto;
+      }
+      body {
+          display: table-cell;
+          vertical-align: middle;
+          background: #4ECDC4;
+      }
+
+      #login-page {
+        width: 500px;
+      }
+    </style>
+	</head>
+	<body>
+    <div id="login-page" class="row">
+      <div class="col s12 z-depth-6 card-panel">
+        <form class="login-form">
+          <div class="row">
+          </div>
+          <div class="row">
+            <div class="input-field col s12">
+              <i class="material-icons prefix">mail_outline</i>
+              <input id="username" type="text">
+              <label for="username">Username</label>
+            </div>
+          </div>
+          <div class="row">
+            <div class="input-field col s6">
+              <i class="material-icons prefix">lock_outline</i>
+              <input id="game-code" type="text">
+              <label for="game-code">Game Code</label>
+            </div>
+            <div class="input-field col s6">
+              <a href="#" class="btn waves-effect waves-light col s12">Join Game</a>
+            </div>
+          </div>
+          <div class="row">
+            <div class="input-field col s12">
+              <a href="#" class="btn waves-effect waves-light col s12">Create New Game</a>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <!-- <script src="static/three.js"></script> -->
+	</body>
+</html>
