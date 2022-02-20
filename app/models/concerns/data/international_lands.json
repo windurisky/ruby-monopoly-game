@@ -1,0 +1,284 @@
+{
+  "data": [
+    {
+      "index": 0,
+      "title": "Start",
+      "description": "Starting point of the game, everytime you pass here you will get reward money",
+      "land_type": "start",
+      "price": 0
+    },
+    {
+      "index": 1,
+      "title": "Pattaya Beach",
+      "description": "",
+      "land_type": "construction",
+      "price": 60
+    },
+    {
+      "index": 2,
+      "title": "Chance",
+      "description": "",
+      "land_type": "chance",
+      "price": 0
+    },
+    {
+      "index": 3,
+      "title": "",
+      "description": "",
+      "land_type": "construction",
+      "price": 60
+    },
+    {
+      "index": 4,
+      "title": "Income Tax",
+      "description": "You are fined for forgetting to pay income taxes.",
+      "land_type": "expense",
+      "price": -200
+    },
+    {
+      "index": 5,
+      "title": "Railroad",
+      "description": "Building railroad",
+      "land_type": "infra",
+      "price": 200
+    },
+    {
+      "index": 6,
+      "title": "Something Avenue",
+      "description": "",
+      "land_type": "construction",
+      "price": 100
+    },
+    {
+      "index": 7,
+      "title": "Chance",
+      "description": "",
+      "land_type": "chance",
+      "price": 0
+    },
+    {
+      "index": 8,
+      "title": "Something Avenue",
+      "description": "",
+      "land_type": "construction",
+      "price": 100
+    },
+    {
+      "index": 9,
+      "title": "Something Avenue",
+      "description": "",
+      "land_type": "construction",
+      "price": 120
+    },
+    {
+      "index": 10,
+      "title": "In Jail",
+      "description": "You will go to jail when you are ordered to, otherwise you are just visiting.",
+      "land_type": "jail",
+      "price": 0
+    },
+    {
+      "index": 11,
+      "title": "",
+      "description": "",
+      "land_type": "",
+      "price": 0
+    },
+    {
+      "index": 12,
+      "title": "",
+      "description": "",
+      "land_type": "",
+      "price": 0
+    },
+    {
+      "index": 13,
+      "title": "",
+      "description": "",
+      "land_type": "",
+      "price": 0
+    },
+    {
+      "index": 14,
+      "title": "",
+      "description": "",
+      "land_type": "",
+      "price": 0
+    },
+    {
+      "index": 15,
+      "title": "",
+      "description": "",
+      "land_type": "",
+      "price": 0
+    },
+    {
+      "index": 16,
+      "title": "",
+      "description": "",
+      "land_type": "",
+      "price": 0
+    },
+    {
+      "index": 17,
+      "title": "",
+      "description": "",
+      "land_type": "",
+      "price": 0
+    },
+    {
+      "index": 18,
+      "title": "",
+      "description": "",
+      "land_type": "",
+      "price": 0
+    },
+    {
+      "index": 19,
+      "title": "",
+      "description": "",
+      "land_type": "",
+      "price": 0
+    },
+    {
+      "index": 20,
+      "title": "",
+      "description": "",
+      "land_type": "",
+      "price": 0
+    },
+    {
+      "index": 21,
+      "title": "",
+      "description": "",
+      "land_type": "",
+      "price": 0
+    },
+    {
+      "index": 22,
+      "title": "",
+      "description": "",
+      "land_type": "",
+      "price": 0
+    },
+    {
+      "index": 23,
+      "title": "",
+      "description": "",
+      "land_type": "",
+      "price": 0
+    },
+    {
+      "index": 24,
+      "title": "",
+      "description": "",
+      "land_type": "",
+      "price": 0
+    },
+    {
+      "index": 25,
+      "title": "",
+      "description": "",
+      "land_type": "",
+      "price": 0
+    },
+    {
+      "index": 26,
+      "title": "",
+      "description": "",
+      "land_type": "",
+      "price": 0
+    },
+    {
+      "index": 27,
+      "title": "",
+      "description": "",
+      "land_type": "",
+      "price": 0
+    },
+    {
+      "index": 28,
+      "title": "",
+      "description": "",
+      "land_type": "",
+      "price": 0
+    },
+    {
+      "index": 29,
+      "title": "",
+      "description": "",
+      "land_type": "",
+      "price": 0
+    },
+    {
+      "index": 30,
+      "title": "",
+      "description": "",
+      "land_type": "",
+      "price": 0
+    },
+    {
+      "index": 31,
+      "title": "",
+      "description": "",
+      "land_type": "",
+      "price": 0
+    },
+    {
+      "index": 32,
+      "title": "",
+      "description": "",
+      "land_type": "",
+      "price": 0
+    },
+    {
+      "index": 33,
+      "title": "",
+      "description": "",
+      "land_type": "",
+      "price": 0
+    },
+    {
+      "index": 34,
+      "title": "",
+      "description": "",
+      "land_type": "",
+      "price": 0
+    },
+    {
+      "index": 35,
+      "title": "",
+      "description": "",
+      "land_type": "",
+      "price": 0
+    },
+    {
+      "index": 36,
+      "title": "",
+      "description": "",
+      "land_type": "",
+      "price": 0
+    },
+    {
+      "index": 37,
+      "title": "",
+      "description": "",
+      "land_type": "",
+      "price": 0
+    },
+    {
+      "index": 38,
+      "title": "",
+      "description": "",
+      "land_type": "",
+      "price": 0
+    },
+    {
+      "index": 39,
+      "title": "",
+      "description": "",
+      "land_type": "",
+      "price": 0
+    }
+  ]
+}
