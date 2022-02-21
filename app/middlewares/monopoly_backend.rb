@@ -20,7 +20,7 @@ module Middleware
         end
 
         ws.on :message do |event|
-          websocket_on_message(ws, event)
+          ws_on_message(ws, event)
         end
 
         ws.on :close do |event|
@@ -38,30 +38,16 @@ module Middleware
 
     private
 
-    def websocket_on_message(ws, event)
+    def ws_on_message(ws, event)
       p [:message, event.data]
       response = {}
       data = JSON.parse(event.data)
       action = data.dig('action')
-      username = data.dig('username')
       case action
       when 'join_room'
-        p 'joining room'
-        code = data.dig('game_code')
-        response = {
-          action: 'join_room',
-          username: username,
-          code: code
-        }
+        response = ws_join_room(data)
       when 'create_room'
-        p 'creating room'
-        room = ::Service::CreateRoom.run!(username)
-        @rooms << room
-        response = {
-          action: action,
-          username: username,
-          code: room.code
-        }
+        response = ws_create_room(data)
       else
         raise 'invalid action'
       end
@@ -70,11 +56,38 @@ module Middleware
       p e.backtrace
       action = 'error'
       response = {
-        action: 'error'
+        action: 'error',
+        message: e.message
       }
     ensure
       p response
       ws.send(response.to_json)
+    end
+
+    def ws_join_room(data)
+      p 'joining room'
+      action = data.dig('action')
+      username = data.dig('username')&.strip
+      code = data.dig('game_code')&.strip&.upcase
+      room = @rooms.select { |r| r.code == code }.first
+      raise 'room not found' if room.nil?
+      joined_room = ::Service::JoinRoom.run!(username, room)
+      @rooms.map! do |r|
+        r.code == room.code ? joined_room : r
+      end
+
+      { action: action, username: username, code: code }
+    end
+
+    def ws_create_room(data)
+      p 'creating room'
+      action = data.dig('action')
+      username = data.dig('username')&.strip
+      room = ::Service::CreateRoom.run!(username)
+      raise 'rooms are full, try again later' if @rooms.count >= 5
+      @rooms << room
+
+      { action: action, username: username, code: room.code }
     end
   end
 end

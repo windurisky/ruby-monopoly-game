@@ -12,5 +12,9 @@ module Model
     def invite_link
       "/join/#{@code}"
     end
+
+    def add_player(player)
+      @players << player
+    end
   end
 end
