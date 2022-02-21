@@ -1,6 +1,6 @@
 # config.ru
 require './app'
-require './app/middlewares/monopoly_backend'
+Dir[File.join(__dir__, 'app', '**', '*.rb')].each { |file| require file }
 
 use Middleware::MonopolyBackend
 

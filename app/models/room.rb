@@ -3,7 +3,8 @@ module Model
     attr_reader :code, :instruction_locale, :board_locale, :board, :players
 
     def initialize(player)
-      @player = player
+      @players = []
+      @players << player
       @code = Utility::CodeGenerator.generate
       @board = Board.new
     end

@@ -7,6 +7,7 @@ module Middleware
     def initialize(app)
       @app     = app
       @clients = []
+      @rooms = []
     end
 
     def call(env)
@@ -19,8 +20,7 @@ module Middleware
         end
 
         ws.on :message do |event|
-          p [:message, event.data]
-          @clients.each {|client| client.send(event.data) }
+          websocket_on_message(ws, event)
         end
 
         ws.on :close do |event|
@@ -34,6 +34,47 @@ module Middleware
       else
         @app.call(env)
       end
+    end
+
+    private
+
+    def websocket_on_message(ws, event)
+      p [:message, event.data]
+      response = {}
+      data = JSON.parse(event.data)
+      action = data.dig('action')
+      username = data.dig('username')
+      case action
+      when 'join_room'
+        p 'joining room'
+        code = data.dig('game_code')
+        response = {
+          action: 'join_room',
+          username: username,
+          code: code
+        }
+      when 'create_room'
+        p 'creating room'
+        room = ::Service::CreateRoom.run!(username)
+        @rooms << room
+        response = {
+          action: action,
+          username: username,
+          code: room.code
+        }
+      else
+        raise 'invalid action'
+      end
+    rescue => e
+      p e.message
+      p e.backtrace
+      action = 'error'
+      response = {
+        action: 'error'
+      }
+    ensure
+      p response
+      ws.send(response.to_json)
     end
   end
 end

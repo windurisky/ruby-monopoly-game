@@ -6,24 +6,15 @@ class IndexView {
 
   initComponents() {
     this.username = document.getElementById("username");
-    this.gameCode = document.getElementById("game-code");
     this.joinRoom = document.getElementById("join-room");
     this.createRoom = document.getElementById("create-room");
 
     this.joinRoom.addEventListener("click", () => {
       console.log(this.username.value);
-      console.log(this.gameCode.value);
       this.socket.send(JSON.stringify({
         action: "join_room",
         username: this.username.value,
-        game_code: this.gameCode.value
-      }));
-    });
-    this.createRoom.addEventListener("click", () => {
-      console.log(this.username.value);
-      this.socket.send(JSON.stringify({
-        action: "create_room",
-        username: this.username.value,
+        game_code: location.pathname.split('/')[2]
       }));
     });
   }
