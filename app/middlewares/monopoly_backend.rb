@@ -4,6 +4,11 @@ module Middleware
   class MonopolyBackend
     KEEPALIVE_TIME = 15 # in seconds
 
+    # list of actions
+    BROADCAST_MESSAGE = 'broadcast_message'
+    CREATE_ROOM = 'create_room'
+    JOIN_ROOM = 'join_room'
+
     def initialize(app)
       @app     = app
       @clients = []
@@ -45,9 +50,9 @@ module Middleware
       action = data.dig('action')
       case action
       when 'join_room'
-        response = ws_join_room(data)
+        ws_join_room(ws, data)
       when 'create_room'
-        response = ws_create_room(data)
+        ws_create_room(ws, data)
       else
         raise 'invalid action'
       end
@@ -59,35 +64,38 @@ module Middleware
         action: 'error',
         message: e.message
       }
-    ensure
-      p response
       ws.send(response.to_json)
     end
 
-    def ws_join_room(data)
+    def ws_join_room(ws, data)
       p 'joining room'
       action = data.dig('action')
       username = data.dig('username')&.strip
       code = data.dig('game_code')&.strip&.upcase
       room = @rooms.select { |r| r.code == code }.first
       raise 'room not found' if room.nil?
-      joined_room = ::Service::JoinRoom.run!(username, room)
+      joined_room = ::Service::JoinRoom.run!(username, ws, room)
       @rooms.map! do |r|
         r.code == room.code ? joined_room : r
       end
 
-      { action: action, username: username, code: code }
+      response = { action: action, username: username, code: code }
+      ws.send(response.to_json)
+
+      message_response = { action: BROADCAST_MESSAGE, message: "#{username} has joined the game!" }
+      room.websocket_send(message_response.to_json)
     end
 
-    def ws_create_room(data)
+    def ws_create_room(ws, data)
       p 'creating room'
       action = data.dig('action')
       username = data.dig('username')&.strip
-      room = ::Service::CreateRoom.run!(username)
-      raise 'rooms are full, try again later' if @rooms.count >= 5
+      room = ::Service::CreateRoom.run!(username, ws)
+      raise 'rooms are full, try again later' if @rooms.count >= ENV.fetch('MAX_ROOMS', 5).to_i
       @rooms << room
 
-      { action: action, username: username, code: room.code }
+      response = { action: action, username: username, code: room.code }
+      ws.send(response.to_json)
     end
   end
 end

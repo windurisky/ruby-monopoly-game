@@ -1,11 +1,12 @@
 module Service
   class CreateRoom < Base
-    def initialize(username)
+    def initialize(username, websocket)
       @username = username
+      @websocket = websocket
     end
 
     def run!
-      player = Model::Player.new(@username)
+      player = Model::Player.new(@username, @websocket)
       room = Model::Room.new(player)
     end
   end

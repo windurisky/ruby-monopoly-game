@@ -16,5 +16,9 @@ module Model
     def add_player(player)
       @players << player
     end
+
+    def websocket_send(response)
+      @players.each { |p| p.websocket&.send(response) }
+    end
   end
 end

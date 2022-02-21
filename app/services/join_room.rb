@@ -1,13 +1,14 @@
 module Service
   class JoinRoom < Base
-    def initialize(username, room)
+    def initialize(username, websocket, room)
       @username = username
+      @websocket = websocket
       @room = room
     end
 
     def run!
       validate_username!
-      player = Model::Player.new(@username)
+      player = Model::Player.new(@username, @websocket)
       @room.add_player(player)
       @room
     end

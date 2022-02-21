@@ -2,7 +2,7 @@ require 'securerandom'
 
 module Model
   class Player
-    attr_reader :username, :wallet, :index, :remaining_stop_round, :status
+    attr_reader :username, :wallet, :index, :remaining_stop_round, :status, :websocket
 
     STARTING_MONEY = 1_500
 
@@ -13,8 +13,9 @@ module Model
       disconnected: 3
     }
 
-    def initialize(username, host = false)
+    def initialize(username, websocket, host = false)
       @id = SecureRandom.uuid
+      @websocket = websocket
       @username = username
       @wallet = STARTING_MONEY
       @index = 0
@@ -31,6 +32,10 @@ module Model
       @index += steps
       @index -= 38 if @index > 39
       @index
+    end
+
+    def replace_websocket_connection(websocket)
+      @websocket = websocket
     end
   end
 end
