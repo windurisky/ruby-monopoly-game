@@ -10,7 +10,7 @@ module Service
       validate_username!
       player = Model::Player.new(@username, @websocket)
       @room.add_player(player)
-      @room
+      [@room, player]
     end
 
     private

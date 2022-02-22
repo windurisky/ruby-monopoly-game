@@ -2,7 +2,7 @@ require 'securerandom'
 
 module Model
   class Player
-    attr_reader :username, :wallet, :index, :remaining_stop_round, :status, :websocket
+    attr_reader :user_id, :username, :wallet, :index, :remaining_stop_round, :status, :websocket
 
     STARTING_MONEY = 1_500
 
@@ -14,7 +14,7 @@ module Model
     }
 
     def initialize(username, websocket, host = false)
-      @id = SecureRandom.uuid
+      @user_id = SecureRandom.uuid
       @websocket = websocket
       @username = username
       @wallet = STARTING_MONEY

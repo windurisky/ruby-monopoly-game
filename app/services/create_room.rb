@@ -8,6 +8,7 @@ module Service
     def run!
       player = Model::Player.new(@username, @websocket)
       room = Model::Room.new(player)
+      [room, player]
     end
   end
 end
