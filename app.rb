@@ -15,4 +15,8 @@ class App < Sinatra::Base
   get "/join/:code" do
     send_file './app/views/join.html'
   end
+
+  get "/room" do
+    send_file './app/views/room.html'
+  end
 end
