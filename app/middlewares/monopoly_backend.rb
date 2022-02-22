@@ -81,9 +81,6 @@ module Middleware
 
       response = { action: action, user_id: player.user_id, username: username, code: code }
       ws.send(response.to_json)
-
-      message_response = { action: BROADCAST_MESSAGE, message: "#{username} has joined the game!" }
-      room.websocket_send(message_response.to_json)
     end
 
     def ws_create_room(ws, data)
